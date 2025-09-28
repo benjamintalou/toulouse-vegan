@@ -1,101 +1,177 @@
-import Image from "next/image";
+import {
+  Leaf,
+  Utensils,
+  Facebook,
+  Instagram,
+  CandyCane,
+  Globe,
+} from "lucide-react";
+import Link from "next/link";
+import type { LucideIcon } from "lucide-react";
 
-export default function Home() {
+type LinkItem = {
+  label: string;
+  href: string;
+  icon: LucideIcon;
+};
+
+type LinkGroup = {
+  theme: string;
+  links: LinkItem[];
+};
+
+const groupedLinks: LinkGroup[] = [
+  {
+    theme: "Guides pour trouver des restaurants",
+    links: [
+      {
+        label: "Happy Cow",
+        href: "https://www.happycow.net/europe/france/toulouse/",
+        icon: Utensils,
+      },
+      {
+        label: "Trip Advisor",
+        href: "https://www.tripadvisor.fr/Restaurants-g187175-zfz10697-Toulouse_Haute_Garonne_Occitanie.html",
+        icon: Utensils,
+      },
+    ],
+  },
+  {
+    theme: "Les marchés et événements",
+    links: [
+      {
+        label: "Marché de Noël Ethique et Végane de Toulouse 2025 (6 décembre)",
+        href: "/marche-de-noel-ethique-et-vegane-de-toulouse-2025",
+        icon: CandyCane,
+      },
+      {
+        label: "Mini Marché Vegan Toulouse",
+        href: "https://www.facebook.com/MarcheVeganToulouse",
+        icon: Facebook,
+      },
+      {
+        label: "Mini Marché Vegan Toulouse",
+        href: "https://www.instagram.com/mini_marche_vegan_toulouse",
+        icon: Instagram,
+      },
+    ],
+  },
+  {
+    theme: "Communautés & Groupes en ligne",
+    links: [
+      {
+        label: "J'agis pour les animaux Toulouse",
+        href: "https://www.facebook.com/jagispourlesanimauxtoulouse",
+        icon: Facebook,
+      },
+      {
+        label: "J'agis pour les animaux Toulouse",
+        href: "https://www.instagram.com/jagispourlesanimaux_toulouse",
+        icon: Instagram,
+      },
+      {
+        label: "Vegan Toulouse 31 (Facebook)",
+        href: "https://www.facebook.com/groups/1793040727635339",
+        icon: Facebook,
+      },
+      {
+        label: "Véganes de Toulouse et alentours (Facebook)",
+        href: "https://www.facebook.com/groups/493152377456050",
+        icon: Facebook,
+      },
+      {
+        label: "Toulouse Veggies et Vegans (Facebook)",
+        href: "https://www.facebook.com/groups/1923430637917820",
+        icon: Facebook,
+      },
+    ],
+  },
+  {
+    theme: "Les associations, agir localement",
+    links: [
+      {
+        label: "L214",
+        href: "https://www.l214.com/agir/agir-localement-pour-les-animaux/",
+        icon: Globe,
+      },
+      {
+        label: "AVF (Association Végétarienne de France) Toulouse",
+        href: "https://www.avftoulouse.fr/page/3522315-accueil",
+        icon: Globe,
+      },
+      {
+        label: "One Voice",
+        href: "https://one-voice.fr/devenir-militant/",
+        icon: Globe,
+      },
+      {
+        label: "PAZ",
+        href: "https://www.instagram.com/associationpaz/",
+        icon: Globe,
+      },
+      {
+        label: "Food Not Bombs Toulouse",
+        href: "https://www.instagram.com/foodnotbombs.toulouse",
+        icon: Globe,
+      },
+    ],
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main className="min-h-screen bg-background flex flex-col">
+      <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center gap-2">
+            <Leaf className="h-8 w-8 text-primary" />
+            <h1 className="text-2xl font-bold text-foreground">
+              Toulouse vegan
+            </h1>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </header>
+
+      <section className="flex-1 flex flex-col items-center justify-center px-4">
+        <h2 className="text-2xl md:text-3xl font-bold text-balance mb-8 text-center mt-8">
+          Trouver les initiatives, événements et lieux{" "}
+          <span className="text-primary">végans</span> de{" "}
+          <span className="text-primary">Toulouse</span> et ses alentours.
+        </h2>
+        <div className="w-full max-w-md flex flex-col gap-8">
+          {groupedLinks.map((group) => (
+            <div key={group.theme}>
+              <h3 className="text-lg font-semibold mb-3 text-primary">
+                {group.theme}
+              </h3>
+              <div className="flex flex-col gap-4">
+                {group.links.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    className="flex items-center gap-3 px-6 py-4 rounded-lg border bg-card hover:bg-primary/10 transition font-semibold text-lg shadow"
+                  >
+                    <link.icon className="h-5 w-5 text-primary" size={30} />
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <footer className="border-t py-8 px-4">
+        <div className="container mx-auto max-w-4xl">
+          <div className="flex items-center gap-2 justify-center">
+            <Leaf className="h-6 w-6 text-primary" />
+            <span className="font-semibold">
+              © {new Date().getFullYear()} | Toulouse vegan
+            </span>
+          </div>
+        </div>
       </footer>
-    </div>
+    </main>
   );
 }
