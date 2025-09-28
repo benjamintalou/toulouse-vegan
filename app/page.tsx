@@ -150,7 +150,7 @@ export default function HomePage() {
                     key={link.href}
                     href={link.href}
                     target="_blank"
-                    className="flex items-center gap-3 px-6 py-4 rounded-lg border bg-card hover:bg-primary/10 transition font-semibold text-lg shadow"
+                    className="flex items-center gap-3 px-6 py-4 rounded-lg border bg-card hover:bg-primary/10 transition font-semibold text-lg"
                   >
                     <link.icon className="h-5 w-5 text-primary" size={30} />
                     {link.label}
