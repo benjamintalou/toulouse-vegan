@@ -34,10 +34,15 @@ const groupedLinks: LinkGroup[] = [
         href: "https://www.tripadvisor.fr/Restaurants-g187175-zfz10697-Toulouse_Haute_Garonne_Occitanie.html",
         icon: Utensils,
       },
+      {
+        label: "Manger vegan à Toulouse",
+        href: "https://www.happycow.net/europe/france/toulouse/?filters=vegan-vegfriendly",
+        icon: Instagram,
+      },
     ],
   },
   {
-    theme: "Les marchés et événements",
+    theme: "Marchés et événements",
     links: [
       {
         label: "Marché de Noël Ethique et Végane de Toulouse 2025 (6 décembre)",
@@ -70,24 +75,24 @@ const groupedLinks: LinkGroup[] = [
         icon: Instagram,
       },
       {
-        label: "Vegan Toulouse 31 (Facebook)",
+        label: "Vegan Toulouse 31",
         href: "https://www.facebook.com/groups/1793040727635339",
         icon: Facebook,
       },
       {
-        label: "Véganes de Toulouse et alentours (Facebook)",
+        label: "Véganes de Toulouse et alentours",
         href: "https://www.facebook.com/groups/493152377456050",
         icon: Facebook,
       },
       {
-        label: "Toulouse Veggies et Vegans (Facebook)",
+        label: "Toulouse Veggies et Vegans",
         href: "https://www.facebook.com/groups/1923430637917820",
         icon: Facebook,
       },
     ],
   },
   {
-    theme: "Les associations, agir localement",
+    theme: "Associations, agir localement",
     links: [
       {
         label: "L214",
@@ -95,7 +100,7 @@ const groupedLinks: LinkGroup[] = [
         icon: Globe,
       },
       {
-        label: "AVF (Association Végétarienne de France) Toulouse",
+        label: "AVF (Association Végétarienne de France)",
         href: "https://www.avftoulouse.fr/page/3522315-accueil",
         icon: Globe,
       },
