@@ -26,7 +26,7 @@ const groupedLinks: LinkGroup[] = [
     links: [
       {
         label: "Happy Cow",
-        href: "https://www.happycow.net/europe/france/toulouse/",
+        href: "https://www.happycow.net/europe/france/toulouse/?filters=vegan-vegfriendly",
         icon: Utensils,
       },
       {
@@ -36,7 +36,7 @@ const groupedLinks: LinkGroup[] = [
       },
       {
         label: "Manger vegan à Toulouse",
-        href: "https://www.happycow.net/europe/france/toulouse/?filters=vegan-vegfriendly",
+        href: "https://www.instagram.com/mangervegan_toulouse",
         icon: Instagram,
       },
     ],
