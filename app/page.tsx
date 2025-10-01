@@ -62,7 +62,7 @@ const groupedLinks: LinkGroup[] = [
     ],
   },
   {
-    theme: "Communautés & groupes en ligne",
+    theme: "Communautés et groupes en ligne",
     links: [
       {
         label: "J'agis pour les animaux Toulouse",
@@ -92,7 +92,7 @@ const groupedLinks: LinkGroup[] = [
     ],
   },
   {
-    theme: "Associations, agir localement",
+    theme: "Associations pour agir localement",
     links: [
       {
         label: "L214",
@@ -137,17 +137,9 @@ export default function HomePage() {
           filter: "opacity(0.5)",
         }}
       />
-      {/* <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center gap-2">
-            <Leaf className="h-8 w-8 text-primary" />
-            <h1 className="text-2xl font-bold text-foreground">
-              Toulouse vegan
-            </h1>
-          </div>
-        </div>
-      </header> */}
-
+      <header className="flex-1 flex flex-col items-center justify-center">
+        <h1 className="text-2xl font-bold text-foreground">Toulouse vegan</h1>
+      </header>
       <section className="flex-1 flex flex-col items-center justify-center px-4">
         <h2 className="text-2xl md:text-3xl font-bold text-balance mb-8 text-center mt-8">
           Trouver les initiatives, événements et lieux{" "}
