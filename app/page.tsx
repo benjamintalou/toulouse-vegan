@@ -134,7 +134,7 @@ export default function HomePage() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          //filter: "brightness(1.25) saturate(1.1)",
+          filter: "opacity(0.5)",
         }}
       />
       <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
