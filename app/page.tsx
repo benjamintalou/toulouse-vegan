@@ -62,7 +62,7 @@ const groupedLinks: LinkGroup[] = [
     ],
   },
   {
-    theme: "Communautés & Groupes en ligne",
+    theme: "Communautés & groupes en ligne",
     links: [
       {
         label: "J'agis pour les animaux Toulouse",
@@ -125,7 +125,18 @@ const groupedLinks: LinkGroup[] = [
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-background flex flex-col">
+    <main className="min-h-screen flex flex-col relative">
+      <div
+        className="fixed inset-0 -z-10 w-full h-full"
+        aria-hidden="true"
+        style={{
+          backgroundImage: "url('/background.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          //filter: "brightness(1.25) saturate(1.1)",
+        }}
+      />
       <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-2">
@@ -146,7 +157,7 @@ export default function HomePage() {
         <div className="w-full max-w-md flex flex-col gap-8">
           {groupedLinks.map((group) => (
             <div key={group.theme}>
-              <h3 className="text-lg font-semibold mb-3 text-primary">
+              <h3 className="text-xl font-bold mb-3 text-black">
                 {group.theme}
               </h3>
               <div className="flex flex-col gap-4">
@@ -167,7 +178,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="border-t py-8 px-4 mt-8">
+      <footer className="border-t py-8 px-4 mt-8 backdrop-blur-sm bg-card/50">
         <div className="container mx-auto max-w-4xl">
           <div className="flex items-center gap-2 justify-center">
             <Leaf className="h-6 w-6 text-primary" />
