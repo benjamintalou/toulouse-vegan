@@ -1,12 +1,6 @@
-import {
-  Leaf,
-  Utensils,
-  Facebook,
-  Instagram,
-  CandyCane,
-  Globe,
-} from "lucide-react";
+import { Utensils, Facebook, Instagram, CandyCane, Globe } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
 
 type LinkItem = {
@@ -173,7 +167,7 @@ export default function HomePage() {
       <footer className="border-t py-8 px-4 mt-8 backdrop-blur-sm bg-card/50">
         <div className="container mx-auto max-w-4xl">
           <div className="flex items-center gap-2 justify-center">
-            <Leaf className="h-6 w-6 text-primary" />
+            <Image src="/pig.png" alt="Pig" width={24} height={24} />
             <span className="font-semibold">
               © {new Date().getFullYear()} | Toulouse vegan
             </span>
