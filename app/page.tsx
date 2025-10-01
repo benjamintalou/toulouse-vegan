@@ -137,7 +137,7 @@ export default function HomePage() {
           filter: "opacity(0.5)",
         }}
       />
-      <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
+      {/* <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-2">
             <Leaf className="h-8 w-8 text-primary" />
@@ -146,7 +146,7 @@ export default function HomePage() {
             </h1>
           </div>
         </div>
-      </header>
+      </header> */}
 
       <section className="flex-1 flex flex-col items-center justify-center px-4">
         <h2 className="text-2xl md:text-3xl font-bold text-balance mb-8 text-center mt-8">
@@ -166,7 +166,7 @@ export default function HomePage() {
                     key={link.href}
                     href={link.href}
                     target="_blank"
-                    className="flex items-center gap-3 px-6 py-4 rounded-lg border bg-card hover:bg-primary/10 transition font-semibold text-lg"
+                    className="flex items-center gap-3 px-6 py-4 rounded-lg border bg-card/70 hover:bg-primary/10 transition font-semibold text-lg"
                   >
                     <link.icon className="h-5 w-5 text-primary" size={30} />
                     {link.label}
