@@ -109,9 +109,14 @@ const groupedLinks: LinkGroup[] = [
         icon: Globe,
       },
       {
+        label: "Anonymous for the Voiceless Toulouse",
+        href: "https://www.facebook.com/groups/510019202696519/",
+        icon: Facebook,
+      },
+      {
         label: "Food Not Bombs Toulouse",
         href: "https://www.instagram.com/foodnotbombs.toulouse",
-        icon: Globe,
+        icon: Instagram,
       },
     ],
   },
