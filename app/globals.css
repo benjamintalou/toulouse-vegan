@@ -8,6 +8,11 @@
   --muted-foreground: oklch(0.45 0 0); /* ≥ 4.5:1 on translucent cards */
   --border: oklch(0.9 0 0); /* Light gray borders */
   --ring: oklch(0.45 0.15 142); /* Green focus ring */
+  --facebook: oklch(0.52 0.16 258);
+  --instagram: oklch(0.56 0.2 0);
+  --event: oklch(0.34 0.06 150); /* Poster's dark green */
+  --event-foreground: oklch(0.97 0.01 120);
+  --event-accent: oklch(0.87 0.13 92); /* Poster's string-light yellow */
   --radius: 0.5rem;
 }
 
@@ -20,8 +25,15 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
   --color-ring: var(--ring);
+  --color-facebook: var(--facebook);
+  --color-instagram: var(--instagram);
+  --color-event: var(--event);
+  --color-event-foreground: var(--event-foreground);
+  --color-event-accent: var(--event-accent);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
 }
 
 @layer base {

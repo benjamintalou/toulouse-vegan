@@ -2,26 +2,31 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, CalendarDays, Clock, MapPin } from "lucide-react";
-import poster from "@/public/affiche-noel.jpg";
+import { formatDay, formatHours, marcheDeNoel as event } from "@/lib/events";
 
-const title = "Marché de Noël Éthique et Végane de Toulouse 2026";
-const description =
-  "Samedi 12 décembre 2026, de 10h à 18h, place Saint-Pierre à Toulouse.";
+const day = formatDay(event);
+const description = `${day[0].toUpperCase()}${day.slice(1)}, ${formatHours(event)}, ${event.place}.`;
 
 export const metadata: Metadata = {
-  title,
+  title: event.title,
   description,
   openGraph: {
-    title,
+    title: event.title,
     description,
-    images: [{ url: poster.src, width: poster.width, height: poster.height }],
+    images: [
+      {
+        url: event.poster.src,
+        width: event.poster.width,
+        height: event.poster.height,
+      },
+    ],
   },
 };
 
 const details = [
-  { icon: CalendarDays, label: "Samedi 12 décembre 2026" },
-  { icon: Clock, label: "De 10h à 18h" },
-  { icon: MapPin, label: "Place Saint-Pierre, Toulouse" },
+  { icon: CalendarDays, label: formatDay(event) },
+  { icon: Clock, label: formatHours(event) },
+  { icon: MapPin, label: event.place },
 ];
 
 export default function MarcheDeNoelPage() {
@@ -38,20 +43,23 @@ export default function MarcheDeNoelPage() {
       <div className="mt-6 grid items-start gap-8 md:grid-cols-[1fr_minmax(0,480px)]">
         <div className="rounded-lg border bg-card/85 p-6 backdrop-blur-sm md:sticky md:top-8">
           <h1 className="text-3xl font-bold tracking-tight text-balance">
-            {title}
+            {event.title}
           </h1>
           <ul className="mt-6 flex flex-col gap-3">
             {details.map(({ icon: Icon, label }) => (
-              <li key={label} className="flex items-center gap-3 font-semibold">
+              <li
+                key={label}
+                className="flex items-center gap-3 font-semibold"
+              >
                 <Icon className="size-5 shrink-0 text-primary" aria-hidden="true" />
-                {label}
+                <span className="first-letter:uppercase">{label}</span>
               </li>
             ))}
           </ul>
         </div>
 
         <Image
-          src={poster}
+          src={event.poster}
           alt="Affiche du Marché de Noël Éthique et Vegan 2026"
           placeholder="blur"
           preload
