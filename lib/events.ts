@@ -6,8 +6,18 @@ export type VeganEvent = {
   href: string;
   startsAt: Date;
   endsAt: Date;
+  /** Human-readable venue, e.g. « Place Saint-Pierre, Toulouse ». */
   place: string;
+  /** Structured venue for schema.org `Place`. */
+  location: { name: string; postalCode: string; city: string };
   poster: StaticImageData;
+  isFree: boolean;
+  /** One or two sentences shown above the programme. */
+  intro: string;
+  /** « Au programme » bullet points. */
+  highlights: string[];
+  /** Closing paragraph. */
+  outro: string;
 };
 
 export const marcheDeNoel: VeganEvent = {
@@ -16,7 +26,20 @@ export const marcheDeNoel: VeganEvent = {
   startsAt: new Date("2026-12-12T10:00:00+01:00"),
   endsAt: new Date("2026-12-12T18:00:00+01:00"),
   place: "Place Saint-Pierre, Toulouse",
+  location: { name: "Place Saint-Pierre", postalCode: "31000", city: "Toulouse" },
   poster: afficheNoel,
+  isFree: true,
+  intro:
+    "Un moment festif et engagé, placé sous le signe de la convivialité, pour préparer des fêtes plus respectueuses des animaux et de la planète.",
+  highlights: [
+    "Des cadeaux de Noël éthiques et responsables",
+    "Des options de restauration 100 % véganes",
+    "De l’artisanat et des créations qui respectent la planète et les animaux",
+    "Des stands associatifs engagés pour la cause animale",
+    "Des animations pour tous les âges",
+  ],
+  outro:
+    "Venez découvrir une sélection unique de produits véganes, artisanaux et éthiques, et rencontrer les associations qui œuvrent pour les droits des animaux dans la région. Ensemble, montrons qu’un Noël plus éthique est possible !",
 };
 
 export const events: VeganEvent[] = [marcheDeNoel];
