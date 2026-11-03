@@ -17,6 +17,10 @@ export type Organization = {
 
 export type OrganizationGroup = {
   id: string;
+  /** Short name used in the navigation, e.g. « Restaurants ». */
+  nav: string;
+  /** Small label shown above the section title, e.g. « Se régaler ». */
+  label: string;
   theme: string;
   icon: ComponentType<LucideProps>;
   organizations: Organization[];
@@ -25,6 +29,8 @@ export type OrganizationGroup = {
 export const groups: OrganizationGroup[] = [
   {
     id: "restaurants",
+    nav: "Restaurants",
+    label: "Se régaler",
     theme: "Guides pour trouver des restaurants",
     icon: Utensils,
     organizations: [
@@ -62,6 +68,8 @@ export const groups: OrganizationGroup[] = [
   },
   {
     id: "marches",
+    nav: "Marchés",
+    label: "Sortir",
     theme: "Marchés et événements",
     icon: Store,
     organizations: [
@@ -83,6 +91,8 @@ export const groups: OrganizationGroup[] = [
   },
   {
     id: "communautes",
+    nav: "Communautés",
+    label: "Se retrouver",
     theme: "Communautés et groupes en ligne",
     icon: Users,
     organizations: [
@@ -97,6 +107,16 @@ export const groups: OrganizationGroup[] = [
           {
             platform: "instagram",
             href: "https://www.instagram.com/jagispourlesanimaux_toulouse",
+          },
+        ],
+      },
+      {
+        name: "Apéro Vegan Toulouse",
+        description: "Apéros véganes pour se rencontrer autour d'un verre",
+        links: [
+          {
+            platform: "instagram",
+            href: "https://www.instagram.com/aperovegantoulouse",
           },
         ],
       },
@@ -134,6 +154,8 @@ export const groups: OrganizationGroup[] = [
   },
   {
     id: "associations",
+    nav: "Associations",
+    label: "Agir",
     theme: "Associations pour agir localement",
     icon: HandHeart,
     organizations: [

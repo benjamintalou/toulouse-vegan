@@ -87,8 +87,8 @@ export default function MarcheDeNoelPage() {
       </Link>
 
       <div className="mt-6 grid items-start gap-8 md:grid-cols-[1fr_minmax(0,480px)]">
-        <div className="rounded-lg border bg-card/85 p-6 backdrop-blur-sm md:sticky md:top-8">
-          <h1 className="text-3xl font-bold tracking-tight text-balance">
+        <div className="rounded-xl bg-card p-6 shadow-card md:sticky md:top-24">
+          <h1 className="font-display text-3xl text-balance sm:text-4xl">
             {event.title}
           </h1>
           <ul className="mt-6 flex flex-col gap-3">
@@ -103,14 +103,14 @@ export default function MarcheDeNoelPage() {
             ))}
           </ul>
 
-          <p className="mt-6 text-balance">{event.intro}</p>
-          <h2 className="mt-6 text-lg font-bold">Au programme</h2>
+          <p className="mt-6 text-pretty">{event.intro}</p>
+          <h2 className="font-display mt-6 text-xl">Au programme</h2>
           <ul className="mt-2 list-disc space-y-1.5 pl-5">
             {event.highlights.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
-          <p className="mt-6 text-balance">{event.outro}</p>
+          <p className="mt-6 text-pretty">{event.outro}</p>
         </div>
 
         <Image

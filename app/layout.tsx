@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import Image from "next/image";
 import Script from "next/script";
-import { GeistSans } from "geist/font/sans";
-import background from "@/public/background.png";
+import { Lilita_One, Source_Sans_3 } from "next/font/google";
 import pig from "@/public/pig.png";
+import { SiteHeader } from "@/components/site-header";
 import { JsonLd } from "@/lib/json-ld";
 import { absoluteUrl, siteDescription, siteName, siteTitle, siteUrl } from "@/lib/site";
 import "./globals.css";
@@ -40,8 +40,21 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#6FCF97",
+  themeColor: "#236b35",
 };
+
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  variable: "--font-source-sans",
+  display: "swap",
+});
+
+const lilita = Lilita_One({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-lilita",
+  display: "swap",
+});
 
 const organizationId = absoluteUrl("/#organization");
 
@@ -78,25 +91,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={GeistSans.variable}>
+    <html lang="fr" className={`${sourceSans.variable} ${lilita.variable}`}>
       <body className="flex min-h-dvh flex-col font-sans antialiased">
         <JsonLd data={siteJsonLd} />
         <JsonLd data={organizationJsonLd} />
-        <Image
-          src={background}
-          alt=""
-          fill
-          preload
-          placeholder="blur"
-          sizes="100vw"
-          className="fixed! -z-10 object-cover opacity-50"
-        />
+        <SiteHeader />
         <div className="flex-1">{children}</div>
-        <footer className="border-t bg-card/60 px-4 py-6 backdrop-blur-sm">
-          <p className="flex items-center justify-center gap-2 text-sm font-semibold">
-            <Image src={pig} alt="" width={24} height={24} />©{" "}
-            {new Date().getFullYear()} · {siteName}
-          </p>
+        <footer className="bg-event text-event-foreground">
+          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-7">
+            <p className="flex items-center gap-2.5 font-bold">
+              <Image src={pig} alt="" width={28} height={28} className="rounded-md" />©{" "}
+              {new Date().getFullYear()} · {siteName}
+            </p>
+            <p className="text-sm opacity-85">
+              Initiatives, événements et lieux végans de Toulouse
+            </p>
+          </div>
         </footer>
         <Script
           src="https://cloud.umami.is/script.js"

@@ -3,6 +3,8 @@ import afficheNoel from "@/public/affiche-noel.jpg";
 
 export type VeganEvent = {
   title: string;
+  /** Short name for tight spots like the header button, e.g. « Marché de Noël ». */
+  shortTitle: string;
   href: string;
   startsAt: Date;
   endsAt: Date;
@@ -22,6 +24,7 @@ export type VeganEvent = {
 
 export const marcheDeNoel: VeganEvent = {
   title: "Marché de Noël Éthique et Végane de Toulouse 2026",
+  shortTitle: "Marché de Noël",
   href: "/marche-de-noel-ethique-et-vegane-de-toulouse-2026",
   startsAt: new Date("2026-12-12T10:00:00+01:00"),
   endsAt: new Date("2026-12-12T18:00:00+01:00"),
