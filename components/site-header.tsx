@@ -8,8 +8,8 @@ import { siteName } from "@/lib/site";
 
 export function SiteHeader() {
   const [nextEvent] = getUpcomingEvents();
+  // The yellow button already leads to the event, so the links list skips it.
   const items = [
-    ...(nextEvent ? [{ href: "/#evenements", label: "Événements" }] : []),
     ...groups.map((group) => ({ href: `/#${group.id}`, label: group.nav })),
     { href: "/#contact", label: "Contact" },
   ];

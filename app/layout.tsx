@@ -79,7 +79,7 @@ const organizationJsonLd = {
   url: siteUrl.href,
   logo: absoluteUrl(pig.src),
   description:
-    "Annuaire indépendant des initiatives, événements, lieux et associations véganes de Toulouse et ses alentours.",
+    "Annuaire des initiatives, événements, lieux et associations véganes de Toulouse et ses alentours.",
   areaServed: {
     "@type": "City",
     name: "Toulouse",

@@ -32,7 +32,7 @@ export function GET() {
     "",
     `Site : ${absoluteUrl("/")}`,
     "Langue : français. Zone couverte : Toulouse (Haute-Garonne, Occitanie, France) et ses alentours.",
-    `${siteName} est un annuaire indépendant. Il ne vend rien : il renvoie vers les restaurants, marchés, groupes et associations véganes de la région.`,
+    `${siteName} renvoie vers les restaurants, marchés, groupes et associations véganes de la région.`,
     "",
     "## Événements à venir",
     "",

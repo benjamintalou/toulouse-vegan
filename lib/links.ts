@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 import {
   HandHeart,
+  Smartphone,
   Store,
   Users,
   Utensils,
@@ -216,6 +217,26 @@ export const groups: OrganizationGroup[] = [
           {
             platform: "instagram",
             href: "https://www.instagram.com/foodnotbombs.toulouse",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "bons-plans",
+    nav: "Bon plan",
+    label: "Bon plan",
+    theme: "Au quotidien",
+    icon: Smartphone,
+    organizations: [
+      {
+        name: "321 Vegan : L’appli mobile qui aide les vegans 🌱",
+        description:
+          "Scannez des codes-barres, vérifiez les additifs et les marques de cosmétiques",
+        links: [
+          {
+            platform: "web",
+            href: "https://321vegan.fr/?utm_source=toulouse-vegan.fr",
           },
         ],
       },

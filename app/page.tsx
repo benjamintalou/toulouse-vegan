@@ -20,8 +20,7 @@ export default function HomePage() {
           </h1>
           <p className="max-w-lg text-xl leading-relaxed text-balance sm:text-2xl">
             Trouver les <strong>initiatives</strong>, <strong>événements</strong> et{" "}
-            <strong>lieux végans</strong> de Toulouse et ses alentours. Un annuaire
-            indépendant, sans pub.
+            <strong>lieux végans</strong> de Toulouse et ses alentours.
           </p>
           <div className="mt-2 flex flex-wrap gap-3">
             <a
