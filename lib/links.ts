@@ -26,6 +26,22 @@ export type OrganizationGroup = {
   organizations: Organization[];
 };
 
+/** The collective behind the site; also the contact point in the footer. */
+export const contactOrganization: Organization = {
+  name: "J'agis pour les animaux Toulouse",
+  description: "Groupe local d'action pour les animaux",
+  links: [
+    {
+      platform: "facebook",
+      href: "https://www.facebook.com/jagispourlesanimauxtoulouse",
+    },
+    {
+      platform: "instagram",
+      href: "https://www.instagram.com/jagispourlesanimaux_toulouse",
+    },
+  ],
+};
+
 export const groups: OrganizationGroup[] = [
   {
     id: "restaurants",
@@ -96,20 +112,7 @@ export const groups: OrganizationGroup[] = [
     theme: "Communautés et groupes en ligne",
     icon: Users,
     organizations: [
-      {
-        name: "J'agis pour les animaux Toulouse",
-        description: "Groupe local d'action pour les animaux",
-        links: [
-          {
-            platform: "facebook",
-            href: "https://www.facebook.com/jagispourlesanimauxtoulouse",
-          },
-          {
-            platform: "instagram",
-            href: "https://www.instagram.com/jagispourlesanimaux_toulouse",
-          },
-        ],
-      },
+      contactOrganization,
       {
         name: "Apéro Vegan Toulouse",
         description: "Apéros véganes pour se rencontrer autour d'un verre",

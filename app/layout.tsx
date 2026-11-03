@@ -4,6 +4,8 @@ import Script from "next/script";
 import { Lilita_One, Source_Sans_3 } from "next/font/google";
 import pig from "@/public/pig.png";
 import { SiteHeader } from "@/components/site-header";
+import { ContactLinks } from "@/components/contact-links";
+import { contactOrganization } from "@/lib/links";
 import { JsonLd } from "@/lib/json-ld";
 import { absoluteUrl, siteDescription, siteName, siteTitle, siteUrl } from "@/lib/site";
 import "./globals.css";
@@ -98,14 +100,29 @@ export default function RootLayout({
         <SiteHeader />
         <div className="flex-1">{children}</div>
         <footer className="bg-event text-event-foreground">
-          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-7">
-            <p className="flex items-center gap-2.5 font-bold">
-              <Image src={pig} alt="" width={28} height={28} className="rounded-md" />©{" "}
-              {new Date().getFullYear()} · {siteName}
-            </p>
-            <p className="text-sm opacity-85">
-              Initiatives, événements et lieux végans de Toulouse
-            </p>
+          <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-10">
+            <section id="contact" aria-labelledby="contact-title" className="flex flex-col gap-3">
+              <h2 id="contact-title" className="font-display text-2xl">
+                Nous contacter
+              </h2>
+              <p className="max-w-xl text-pretty">
+                Une question, un lien à ajouter, un événement à annoncer ? Écrivez à{" "}
+                <strong>{contactOrganization.name}</strong>.
+              </p>
+              <ContactLinks organization={contactOrganization} />
+            </section>
+            <div className="flex flex-wrap items-center justify-between gap-4 border-t border-event-foreground/15 pt-6">
+              <p className="flex items-center gap-2.5 font-bold">
+                <span className="grid size-8 place-items-center rounded-md bg-accent">
+                  <Image src={pig} alt="" width={24} height={24} />
+                </span>
+                ©{" "}
+                {new Date().getFullYear()} · {siteName}
+              </p>
+              <p className="text-sm opacity-85">
+                Initiatives, événements et lieux végans de Toulouse
+              </p>
+            </div>
           </div>
         </footer>
         <Script

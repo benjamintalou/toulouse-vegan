@@ -1,5 +1,5 @@
 import { events, formatDay, formatHours } from "@/lib/events";
-import { groups } from "@/lib/links";
+import { contactOrganization, groups } from "@/lib/links";
 import { absoluteUrl, siteDescription, siteName } from "@/lib/site";
 
 // Regenerate daily so the events section follows the home page.
@@ -39,6 +39,10 @@ export function GET() {
     ...(eventLines.length ? eventLines : ["- Aucun événement annoncé pour le moment."]),
     "",
     ...groupSections.flatMap((section) => [section, ""]),
+    "## Contact",
+    "",
+    `Pour une question, un lien à ajouter ou un événement à annoncer, écrire à ${contactOrganization.name} : ${contactOrganization.links.map(({ href }) => href).join(", ")}`,
+    "",
   ].join("\n");
 
   return new Response(body, {

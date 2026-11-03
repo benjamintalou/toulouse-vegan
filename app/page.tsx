@@ -41,10 +41,9 @@ export default function HomePage() {
         <Image
           src={background}
           alt="Illustration : une vache, un cochon et un lapin dans des collines vertes"
-          preload
           placeholder="blur"
           sizes="(min-width: 768px) 520px, 100vw"
-          className="aspect-4/3 w-full rounded-2xl object-cover object-[50%_78%] shadow-xl"
+          className="hidden aspect-4/3 w-full rounded-2xl object-cover object-[50%_78%] shadow-xl sm:block"
         />
       </section>
 
