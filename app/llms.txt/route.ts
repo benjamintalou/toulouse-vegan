@@ -20,7 +20,8 @@ export function GET() {
       const links = organization.links
         .map(({ href }) => `[${new URL(href).hostname.replace(/^www\./, "")}](${href})`)
         .join(", ");
-      return `- ${organization.name} : ${organization.description}. ${links}`;
+      const address = organization.address ? ` Adresse : ${organization.address}.` : "";
+      return `- ${organization.name} : ${organization.description}.${address} ${links}`;
     });
     return `## ${group.theme}\n\n${lines.join("\n")}`;
   });

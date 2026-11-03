@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 import {
   HandHeart,
+  ShoppingBasket,
   Smartphone,
   Store,
   Users,
@@ -13,6 +14,10 @@ export type Platform = "facebook" | "facebook-group" | "instagram" | "web";
 export type Organization = {
   name: string;
   description: string;
+  /** Postal address of a physical place, shown on the card with a map link. */
+  address?: string;
+  /** Overrides the group icon when the organization is of a different kind. */
+  icon?: ComponentType<LucideProps>;
   links: { platform: Platform; href: string }[];
 };
 
@@ -232,7 +237,13 @@ export const groups: OrganizationGroup[] = [
       {
         name: "Le cri de la carotte",
         description: "L'épicerie végane de Toulouse !",
+        address: "304 avenue de Muret, 31300 Toulouse",
+        icon: ShoppingBasket,
         links: [
+          {
+            platform: "facebook",
+            href: "https://www.facebook.com/lecridelacarotte31/",
+          },
           {
             platform: "instagram",
             href: "https://www.instagram.com/le_cri_de_la_carotte/",

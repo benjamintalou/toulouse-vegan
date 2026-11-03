@@ -1,5 +1,5 @@
 import type { ComponentType } from "react";
-import { Globe, type LucideProps } from "lucide-react";
+import { Globe, MapPin, type LucideProps } from "lucide-react";
 import { Facebook, Instagram } from "@/components/brand-icons";
 import type { Organization, Platform } from "@/lib/links";
 
@@ -20,6 +20,7 @@ type OrganizationCardProps = Organization & {
 export function OrganizationCard({
   name,
   description,
+  address,
   links,
   icon: Icon,
 }: OrganizationCardProps) {
@@ -32,6 +33,25 @@ export function OrganizationCard({
         <div className="min-w-0">
           <h3 className="text-lg leading-snug font-bold">{name}</h3>
           <p className="mt-0.5 text-muted-foreground">{description}</p>
+          {address ? (
+            <address className="mt-2 text-sm not-italic text-muted-foreground">
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${name}, ${address}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-start gap-1.5 underline-offset-2 hover:text-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+              >
+                <MapPin className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+                <span>
+                  {address}
+                  <span className="sr-only">
+                    {" "}
+                    (voir sur une carte, s’ouvre dans un nouvel onglet)
+                  </span>
+                </span>
+              </a>
+            </address>
+          ) : null}
         </div>
       </div>
       <ul className="mt-auto flex flex-wrap gap-2">

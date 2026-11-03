@@ -78,7 +78,7 @@ export default function HomePage() {
             <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {group.organizations.map((organization) => (
                 <li key={organization.name}>
-                  <OrganizationCard {...organization} icon={group.icon} />
+                  <OrganizationCard {...organization} icon={organization.icon ?? group.icon} />
                 </li>
               ))}
             </ul>
