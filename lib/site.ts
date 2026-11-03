@@ -10,3 +10,14 @@ export const siteDescription =
 
 /** Absolute URL for a site path, e.g. `absoluteUrl("/marche-de-noel")`. */
 export const absoluteUrl = (path: string) => new URL(path, siteUrl).href;
+
+/**
+ * Tags an outgoing URL so the destination can see the visit came from here,
+ * e.g. `withUtmSource("https://321vegan.fr/")` → `https://321vegan.fr/?utm_source=toulouse-vegan.fr`.
+ * Keeps any query string the URL already has.
+ */
+export const withUtmSource = (href: string) => {
+  const url = new URL(href);
+  url.searchParams.set("utm_source", siteUrl.hostname.replace(/^www\./, ""));
+  return url.href;
+};

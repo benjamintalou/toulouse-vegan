@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import {
+  BookOpen,
   HandHeart,
   ShoppingBasket,
   Smartphone,
@@ -8,6 +9,7 @@ import {
   Utensils,
   type LucideProps,
 } from "lucide-react";
+import { withUtmSource } from "@/lib/site";
 
 export type Platform = "facebook" | "facebook-group" | "instagram" | "web";
 
@@ -32,8 +34,17 @@ export type OrganizationGroup = {
   organizations: Organization[];
 };
 
+/** Every outgoing link carries `utm_source` so partners can see traffic coming from the site. */
+const tagOutgoingLinks = (organization: Organization): Organization => ({
+  ...organization,
+  links: organization.links.map((link) => ({
+    ...link,
+    href: withUtmSource(link.href),
+  })),
+});
+
 /** The collective behind the site; also the contact point in the footer. */
-export const contactOrganization: Organization = {
+export const contactOrganization: Organization = tagOutgoingLinks({
   name: "J'agis pour les animaux Toulouse",
   description: "Groupe local d'action pour les animaux",
   links: [
@@ -46,9 +57,9 @@ export const contactOrganization: Organization = {
       href: "https://www.instagram.com/jagispourlesanimaux_toulouse",
     },
   ],
-};
+});
 
-export const groups: OrganizationGroup[] = [
+const rawGroups: OrganizationGroup[] = [
   {
     id: "restaurants",
     nav: "Restaurants",
@@ -170,7 +181,8 @@ export const groups: OrganizationGroup[] = [
     organizations: [
       {
         name: "L214",
-        description: "Association de défense des animaux d'élevage",
+        description:
+          "Association qui défend les animaux utilisés comme ressources alimentaires et encourage l'alimentation végétale",
         links: [
           {
             platform: "web",
@@ -229,8 +241,8 @@ export const groups: OrganizationGroup[] = [
   },
   {
     id: "bons-plans",
-    nav: "Bon plan",
-    label: "Bon plan",
+    nav: "Bons plans",
+    label: "Bons plans",
     theme: "Au quotidien",
     icon: Smartphone,
     organizations: [
@@ -257,10 +269,22 @@ export const groups: OrganizationGroup[] = [
         links: [
           {
             platform: "web",
-            href: "https://321vegan.fr/?utm_source=toulouse-vegan.fr",
+            href: "https://321vegan.fr/",
           },
         ],
+      },
+      {
+        name: "Vegan Pratique",
+        description:
+          "Recettes, nutrition et conseils pour vivre vegan au quotidien",
+        icon: BookOpen,
+        links: [{ platform: "web", href: "https://vegan-pratique.fr/" }],
       },
     ],
   },
 ];
+
+export const groups: OrganizationGroup[] = rawGroups.map((group) => ({
+  ...group,
+  organizations: group.organizations.map(tagOutgoingLinks),
+}));

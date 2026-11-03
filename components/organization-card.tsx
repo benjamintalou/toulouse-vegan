@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import { Globe, MapPin, type LucideProps } from "lucide-react";
 import { Facebook, Instagram } from "@/components/brand-icons";
 import type { Organization, Platform } from "@/lib/links";
+import { withUtmSource } from "@/lib/site";
 
 const platforms: Record<
   Platform,
@@ -36,7 +37,9 @@ export function OrganizationCard({
           {address ? (
             <address className="mt-2 text-sm not-italic text-muted-foreground">
               <a
-                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${name}, ${address}`)}`}
+                href={withUtmSource(
+                  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${name}, ${address}`)}`,
+                )}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-start gap-1.5 underline-offset-2 hover:text-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
