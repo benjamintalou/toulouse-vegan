@@ -230,6 +230,16 @@ export const groups: OrganizationGroup[] = [
     icon: Smartphone,
     organizations: [
       {
+        name: "Le cri de la carotte",
+        description: "L'épicerie végane de Toulouse !",
+        links: [
+          {
+            platform: "instagram",
+            href: "https://www.instagram.com/le_cri_de_la_carotte/",
+          },
+        ],
+      },
+      {
         name: "321 Vegan : L’appli mobile qui aide les vegans 🌱",
         description:
           "Scannez des codes-barres, vérifiez les additifs et les marques de cosmétiques",
