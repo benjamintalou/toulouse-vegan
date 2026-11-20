@@ -1,5 +1,4 @@
-import { CalendarPlus, Link2 } from "lucide-react";
-import { Facebook, Instagram } from "@/components/brand-icons";
+import { CalendarPlus, Link2, Share2 } from "lucide-react";
 import { CopyLinkButton } from "@/components/copy-link-button";
 import { googleCalendarUrl, icsHref } from "@/lib/calendar";
 import { formatDay, formatHours, type VeganEvent } from "@/lib/events";
@@ -9,9 +8,6 @@ import { absoluteUrl } from "@/lib/site";
 const linkClass =
   "inline-flex min-h-11 cursor-pointer items-center gap-1.5 rounded-md text-sm font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
 const iconClass = "size-4 shrink-0";
-
-const withParams = (base: string, params: Record<string, string>) =>
-  `${base}?${new URLSearchParams(params)}`;
 
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -45,23 +41,14 @@ export function EventActions({ event }: { event: VeganEvent }) {
         </a>
       </Row>
       <Row label="Partager l’événement">
-        <a
-          href={withParams("https://www.facebook.com/sharer/sharer.php", { u: url })}
-          {...newTab}
-          className={linkClass}
-        >
-          <Facebook className={iconClass} aria-hidden="true" />
-          Facebook
-          {newTabHint}
-        </a>
         <CopyLinkButton
           url={url}
-          label="Instagram"
-          copiedLabel="Lien copié, à coller dans Instagram"
+          label="Partager"
+          copiedLabel="Lien copié !"
           share={{ title: event.title, text }}
           className={linkClass}
         >
-          <Instagram className={iconClass} aria-hidden="true" />
+          <Share2 className={iconClass} aria-hidden="true" />
         </CopyLinkButton>
         <CopyLinkButton
           url={url}

@@ -126,24 +126,24 @@ export default function MarcheDeNoelPage() {
         <h1 className="font-display mt-1.5 text-3xl text-balance sm:text-4xl lg:text-5xl">
           {event.title}
         </h1>
-        <ul className="mt-4 flex flex-col gap-x-6 gap-y-2 font-semibold sm:flex-row sm:flex-wrap sm:text-lg">
-          {details.map(({ icon: Icon, label, dateTime }) => (
-            <li key={label} className="flex items-center gap-2">
-              <Icon className="size-5 shrink-0 text-primary" aria-hidden="true" />
-              {dateTime ? (
-                <time dateTime={dateTime} className="first-letter:uppercase">
-                  {label}
-                </time>
-              ) : (
-                <span className="first-letter:uppercase">{label}</span>
-              )}
-            </li>
-          ))}
-        </ul>
       </header>
 
       <div className="mt-6 grid items-start gap-8 md:grid-cols-[1fr_minmax(0,320px)] lg:grid-cols-[1fr_minmax(0,400px)] lg:gap-10">
         <div className="rounded-xl bg-card p-5 shadow-card sm:p-6">
+          <ul className="mb-5 flex flex-col gap-2 border-b border-foreground/10 pb-5 font-semibold">
+            {details.map(({ icon: Icon, label, dateTime }) => (
+              <li key={label} className="flex items-center gap-2">
+                <Icon className="size-5 shrink-0 text-primary" aria-hidden="true" />
+                {dateTime ? (
+                  <time dateTime={dateTime} className="first-letter:uppercase">
+                    {label}
+                  </time>
+                ) : (
+                  <span className="first-letter:uppercase">{label}</span>
+                )}
+              </li>
+            ))}
+          </ul>
           <p className="text-pretty sm:text-lg">
             <Emphasis text={event.intro} className="font-bold text-primary" />
           </p>
