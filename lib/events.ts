@@ -22,6 +22,8 @@ export type VeganEvent = {
   outro: string;
   /** Rallying line shown in bold under the closing paragraph. */
   slogan: string;
+  /** The event's page on Facebook, without tracking parameters. */
+  facebookUrl?: string;
 };
 
 export const marcheDeNoel: VeganEvent = {
@@ -48,6 +50,7 @@ export const marcheDeNoel: VeganEvent = {
   outro:
     "Venez découvrir **une sélection unique de produits véganes**, artisanaux et éthiques, et rencontrer les associations qui œuvrent pour les droits des animaux dans la région.",
   slogan: "Pour des fêtes respectueuses des animaux !",
+  facebookUrl: "https://www.facebook.com/events/4076522995978302/",
 };
 
 /** Drops the `**` emphasis markers, for plain-text outputs (metadata, calendar…). */

@@ -51,6 +51,7 @@ const eventJsonLd = {
   name: event.title,
   description: longDescription,
   url: absoluteUrl(event.href),
+  ...(event.facebookUrl ? { sameAs: [event.facebookUrl] } : {}),
   image: [absoluteUrl(event.poster.src)],
   startDate: event.startsAt.toISOString(),
   endDate: event.endsAt.toISOString(),

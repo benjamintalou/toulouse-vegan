@@ -1,8 +1,9 @@
 import { CalendarPlus, Link2, Share2 } from "lucide-react";
+import { Facebook } from "@/components/brand-icons";
 import { CopyLinkButton } from "@/components/copy-link-button";
 import { googleCalendarUrl, icsHref } from "@/lib/calendar";
 import { formatDay, formatHours, type VeganEvent } from "@/lib/events";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, withUtmSource } from "@/lib/site";
 
 // Quiet text links: these are follow-ups to reading the programme, not the page's main content.
 const linkClass =
@@ -21,7 +22,7 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
 const newTab = { target: "_blank", rel: "noopener noreferrer" };
 const newTabHint = <span className="sr-only"> (s’ouvre dans un nouvel onglet)</span>;
 
-/** « Ajouter à mon agenda » and « Partager », shown under the event description. */
+/** « Ajouter à mon agenda », « Partager » and the Facebook event, shown under the event description. */
 export function EventActions({ event }: { event: VeganEvent }) {
   const url = absoluteUrl(event.href);
   const text = `${event.title} : ${formatDay(event)}, ${formatHours(event)}, ${event.place}.${event.isFree ? " Entrée gratuite !" : ""}`;
@@ -59,6 +60,15 @@ export function EventActions({ event }: { event: VeganEvent }) {
           <Link2 className={iconClass} aria-hidden="true" />
         </CopyLinkButton>
       </Row>
+      {event.facebookUrl && (
+        <Row label="Suivre l’événement">
+          <a href={withUtmSource(event.facebookUrl)} {...newTab} className={linkClass}>
+            <Facebook className={iconClass} aria-hidden="true" />
+            Événement Facebook
+            {newTabHint}
+          </a>
+        </Row>
+      )}
     </div>
   );
 }
