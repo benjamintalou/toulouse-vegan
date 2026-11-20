@@ -46,7 +46,7 @@ const tagOutgoingLinks = (organization: Organization): Organization => ({
 /** The collective behind the site; also the contact point in the footer. */
 export const contactOrganization: Organization = tagOutgoingLinks({
   name: "J'agis pour les animaux Toulouse",
-  description: "Groupe local d'action pour les animaux",
+  description: "Groupe local d'action pour les animaux, antenne locale de L214",
   links: [
     {
       platform: "facebook",

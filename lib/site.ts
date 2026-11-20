@@ -3,7 +3,7 @@ export const siteUrl = new URL("https://www.toulouse-vegan.fr");
 export const siteName = "Toulouse vegan";
 
 export const siteTitle =
-  "Toulouse vegan – Guide des initiatives véganes à Toulouse";
+  "Toulouse vegan – Restaurants, événements et associations véganes";
 
 export const siteDescription =
   "Événements, restaurants, groupes et associations véganes à Toulouse et ses alentours : le guide pour trouver la communauté végane toulousaine.";

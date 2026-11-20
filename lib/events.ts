@@ -14,12 +14,14 @@ export type VeganEvent = {
   location: { name: string; postalCode: string; city: string };
   poster: StaticImageData;
   isFree: boolean;
-  /** One or two sentences shown above the programme. */
+  /** One or two sentences shown above the programme. `**mots**` are emphasised. */
   intro: string;
-  /** « Au programme » bullet points. */
+  /** « Au programme » bullet points, with `**mots clés**` in bold; the first one is the headline, shown in colour. */
   highlights: string[];
-  /** Closing paragraph. */
+  /** Closing paragraph. `**mots**` are emphasised. */
   outro: string;
+  /** Rallying line shown in bold under the closing paragraph. */
+  slogan: string;
 };
 
 export const marcheDeNoel: VeganEvent = {
@@ -33,17 +35,23 @@ export const marcheDeNoel: VeganEvent = {
   poster: afficheNoel,
   isFree: true,
   intro:
-    "Un moment festif et engagé, placé sous le signe de la convivialité, pour préparer des fêtes plus respectueuses des animaux et de la planète.",
+    "Un moment festif, engagé, **100 % vegan**, placé sous le signe de la convivialité, pour préparer des fêtes plus respectueuses des animaux et de la planète.",
   highlights: [
     "Des cadeaux de Noël éthiques et responsables",
-    "Des options de restauration 100 % véganes",
-    "De l’artisanat et des créations qui respectent la planète et les animaux",
-    "Des stands associatifs engagés pour la cause animale",
-    "Des animations pour tous les âges",
+    "Des options de **restauration** 100 % véganes",
+    "De l’**artisanat** et des créations",
+    "Des **cosmétiques**, des **vêtements** et des **livres**",
+    "Des **cours de cuisine**",
+    "Des **stands associatifs** engagés pour la cause animale",
+    "Des **animations** pour tous les âges",
   ],
   outro:
-    "Venez découvrir une sélection unique de produits véganes, artisanaux et éthiques, et rencontrer les associations qui œuvrent pour les droits des animaux dans la région. Ensemble, montrons qu’un Noël plus éthique est possible !",
+    "Venez découvrir **une sélection unique de produits véganes**, artisanaux et éthiques, et rencontrer les associations qui œuvrent pour les droits des animaux dans la région.",
+  slogan: "Pour des fêtes respectueuses des animaux !",
 };
+
+/** Drops the `**` emphasis markers, for plain-text outputs (metadata, calendar…). */
+export const plainText = (text: string) => text.replaceAll("**", "");
 
 export const events: VeganEvent[] = [marcheDeNoel];
 

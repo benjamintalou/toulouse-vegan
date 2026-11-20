@@ -2,16 +2,25 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, CalendarDays, Clock, MapPin, Ticket } from "lucide-react";
-import { formatDay, formatHours, marcheDeNoel as event } from "@/lib/events";
+import { AddToCalendar } from "@/components/add-to-calendar";
+import { Emphasis } from "@/components/emphasis";
+import {
+  formatDay,
+  formatHours,
+  marcheDeNoel as event,
+  plainText,
+} from "@/lib/events";
 import { JsonLd } from "@/lib/json-ld";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, siteName } from "@/lib/site";
 
 const day = formatDay(event);
 const description = `${day[0].toUpperCase()}${day.slice(1)}, ${formatHours(event)}, ${event.place}. Entrée gratuite : cadeaux éthiques, restauration 100 % végane, artisanat, associations, animations.`;
 const programme = event.highlights
   .map((item) => item[0].toLowerCase() + item.slice(1))
   .join(" ; ");
-const longDescription = `${event.intro} Au programme : ${programme}. ${event.outro}`;
+const longDescription = plainText(
+  `${event.intro} Au programme : ${programme}. ${event.outro} ${event.slogan}`,
+);
 const posterAlt = "Affiche du Marché de Noël Éthique et Vegan 2026";
 
 export const metadata: Metadata = {
@@ -23,14 +32,9 @@ export const metadata: Metadata = {
     description,
     url: event.href,
     type: "website",
-    images: [
-      {
-        url: event.poster.src,
-        width: event.poster.width,
-        height: event.poster.height,
-        alt: posterAlt,
-      },
-    ],
+    // A page's `openGraph` replaces the layout's, so the site-wide fields are repeated.
+    locale: "fr_FR",
+    siteName,
   },
 };
 
@@ -67,8 +71,17 @@ const eventJsonLd = {
   },
 };
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org" as const,
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: siteName, item: absoluteUrl("/") },
+    { "@type": "ListItem", position: 2, name: event.title, item: absoluteUrl(event.href) },
+  ],
+};
+
 const details = [
-  { icon: CalendarDays, label: formatDay(event) },
+  { icon: CalendarDays, label: formatDay(event), dateTime: event.startsAt.toISOString() },
   { icon: Clock, label: formatHours(event) },
   { icon: MapPin, label: event.place },
   ...(event.isFree ? [{ icon: Ticket, label: "Entrée gratuite" }] : []),
@@ -78,6 +91,7 @@ export default function MarcheDeNoelPage() {
   return (
     <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:py-12">
       <JsonLd data={eventJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <Link
         href="/"
         className="inline-flex min-h-11 items-center gap-2 rounded-md font-semibold text-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
@@ -92,25 +106,47 @@ export default function MarcheDeNoelPage() {
             {event.title}
           </h1>
           <ul className="mt-6 flex flex-col gap-3">
-            {details.map(({ icon: Icon, label }) => (
+            {details.map(({ icon: Icon, label, dateTime }) => (
               <li
                 key={label}
                 className="flex items-center gap-3 font-semibold"
               >
                 <Icon className="size-5 shrink-0 text-primary" aria-hidden="true" />
-                <span className="first-letter:uppercase">{label}</span>
+                {dateTime ? (
+                  <time dateTime={dateTime} className="first-letter:uppercase">
+                    {label}
+                  </time>
+                ) : (
+                  <span className="first-letter:uppercase">{label}</span>
+                )}
               </li>
             ))}
           </ul>
 
-          <p className="mt-6 text-pretty">{event.intro}</p>
+          <div className="mt-6 border-t border-foreground/10 pt-6">
+            <AddToCalendar event={event} />
+          </div>
+
+          <p className="mt-6 text-pretty">
+            <Emphasis text={event.intro} className="font-bold text-primary" />
+          </p>
           <h2 className="font-display mt-6 text-xl">Au programme</h2>
           <ul className="mt-2 list-disc space-y-1.5 pl-5">
-            {event.highlights.map((item) => (
-              <li key={item}>{item}</li>
+            {event.highlights.map((item, index) => (
+              <li
+                key={item}
+                className={index === 0 ? "font-semibold text-primary" : undefined}
+              >
+                <Emphasis text={item} />
+              </li>
             ))}
           </ul>
-          <p className="mt-6 text-pretty">{event.outro}</p>
+          <p className="mt-6 text-pretty">
+            <Emphasis text={event.outro} className="font-bold text-primary" />
+          </p>
+          <p className="mt-4 text-lg font-bold text-balance text-primary">
+            {event.slogan}
+          </p>
         </div>
 
         <Image
