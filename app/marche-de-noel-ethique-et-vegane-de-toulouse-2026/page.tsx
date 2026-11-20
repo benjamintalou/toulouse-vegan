@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, CalendarDays, Clock, MapPin, Ticket } from "lucide-react";
-import { AddToCalendar } from "@/components/add-to-calendar";
+import { ArrowLeft, CalendarDays, MapPin, Ticket } from "lucide-react";
 import { Emphasis } from "@/components/emphasis";
+import { EventActions } from "@/components/event-actions";
 import {
   formatDay,
   formatHours,
@@ -11,6 +11,7 @@ import {
   plainText,
 } from "@/lib/events";
 import { JsonLd } from "@/lib/json-ld";
+import { contactOrganization } from "@/lib/links";
 import { absoluteUrl, siteName } from "@/lib/site";
 
 const day = formatDay(event);
@@ -38,6 +39,12 @@ export const metadata: Metadata = {
   },
 };
 
+// Profile URLs without the `utm_source` tag the site adds to outgoing links.
+const organizerProfiles = contactOrganization.links.map(({ href }) => {
+  const url = new URL(href);
+  return url.origin + url.pathname;
+});
+
 const eventJsonLd = {
   "@context": "https://schema.org" as const,
   "@type": "Event",
@@ -51,6 +58,13 @@ const eventJsonLd = {
   eventStatus: "https://schema.org/EventScheduled",
   inLanguage: "fr-FR",
   isAccessibleForFree: event.isFree,
+  organizer: {
+    "@type": "Organization",
+    name: contactOrganization.name,
+    description: contactOrganization.description,
+    url: organizerProfiles[0],
+    sameAs: organizerProfiles,
+  },
   offers: {
     "@type": "Offer",
     price: 0,
@@ -81,15 +95,18 @@ const breadcrumbJsonLd = {
 };
 
 const details = [
-  { icon: CalendarDays, label: formatDay(event), dateTime: event.startsAt.toISOString() },
-  { icon: Clock, label: formatHours(event) },
+  {
+    icon: CalendarDays,
+    label: `${formatDay(event)} · ${formatHours(event)}`,
+    dateTime: event.startsAt.toISOString(),
+  },
   { icon: MapPin, label: event.place },
   ...(event.isFree ? [{ icon: Ticket, label: "Entrée gratuite" }] : []),
 ];
 
 export default function MarcheDeNoelPage() {
   return (
-    <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:py-12">
+    <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:py-12">
       <JsonLd data={eventJsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
       <Link
@@ -100,37 +117,37 @@ export default function MarcheDeNoelPage() {
         Retour à l’accueil
       </Link>
 
-      <div className="mt-6 grid items-start gap-8 md:grid-cols-[1fr_minmax(0,480px)]">
-        <div className="rounded-xl bg-card p-6 shadow-card md:sticky md:top-24">
-          <h1 className="font-display text-3xl text-balance sm:text-4xl">
-            {event.title}
-          </h1>
-          <ul className="mt-6 flex flex-col gap-3">
-            {details.map(({ icon: Icon, label, dateTime }) => (
-              <li
-                key={label}
-                className="flex items-center gap-3 font-semibold"
-              >
-                <Icon className="size-5 shrink-0 text-primary" aria-hidden="true" />
-                {dateTime ? (
-                  <time dateTime={dateTime} className="first-letter:uppercase">
-                    {label}
-                  </time>
-                ) : (
-                  <span className="first-letter:uppercase">{label}</span>
-                )}
-              </li>
-            ))}
-          </ul>
+      {/* Same header pattern as the home page sections: small label, display title. */}
+      <header className="mt-4">
+        <p className="flex items-center gap-2 text-sm font-bold tracking-wider text-primary uppercase">
+          <span aria-hidden="true" className="size-2.5 rounded-full bg-accent" />
+          Événement
+        </p>
+        <h1 className="font-display mt-1.5 text-3xl text-balance sm:text-4xl lg:text-5xl">
+          {event.title}
+        </h1>
+        <ul className="mt-4 flex flex-col gap-x-6 gap-y-2 font-semibold sm:flex-row sm:flex-wrap sm:text-lg">
+          {details.map(({ icon: Icon, label, dateTime }) => (
+            <li key={label} className="flex items-center gap-2">
+              <Icon className="size-5 shrink-0 text-primary" aria-hidden="true" />
+              {dateTime ? (
+                <time dateTime={dateTime} className="first-letter:uppercase">
+                  {label}
+                </time>
+              ) : (
+                <span className="first-letter:uppercase">{label}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </header>
 
-          <div className="mt-6 border-t border-foreground/10 pt-6">
-            <AddToCalendar event={event} />
-          </div>
-
-          <p className="mt-6 text-pretty">
+      <div className="mt-6 grid items-start gap-8 md:grid-cols-[1fr_minmax(0,320px)] lg:grid-cols-[1fr_minmax(0,400px)] lg:gap-10">
+        <div className="rounded-xl bg-card p-5 shadow-card sm:p-6">
+          <p className="text-pretty sm:text-lg">
             <Emphasis text={event.intro} className="font-bold text-primary" />
           </p>
-          <h2 className="font-display mt-6 text-xl">Au programme</h2>
+          <h2 className="font-display mt-5 text-xl">Au programme</h2>
           <ul className="mt-2 list-disc space-y-1.5 pl-5">
             {event.highlights.map((item, index) => (
               <li
@@ -147,6 +164,13 @@ export default function MarcheDeNoelPage() {
           <p className="mt-4 text-lg font-bold text-balance text-primary">
             {event.slogan}
           </p>
+
+          <div className="mt-6 border-t border-foreground/10 pt-4">
+            <EventActions event={event} />
+            <p className="mt-3 text-sm text-muted-foreground">
+              Organisé par {contactOrganization.name} (L214)
+            </p>
+          </div>
         </div>
 
         <Image
@@ -154,8 +178,8 @@ export default function MarcheDeNoelPage() {
           alt={posterAlt}
           placeholder="blur"
           preload
-          sizes="(min-width: 768px) 480px, 100vw"
-          className="h-auto w-full rounded-lg shadow-lg"
+          sizes="(min-width: 1024px) 400px, (min-width: 768px) 320px, 384px"
+          className="mx-auto h-auto w-full max-w-sm rounded-lg shadow-lg md:sticky md:top-24"
         />
       </div>
     </main>
