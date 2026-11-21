@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { EventBand } from "@/components/event-band";
+import { GroupCalloutCard } from "@/components/group-callout-card";
 import { OrganizationCard } from "@/components/organization-card";
 import { getUpcomingEvents } from "@/lib/events";
 import { groups } from "@/lib/links";
@@ -81,6 +82,11 @@ export default function HomePage() {
                   <OrganizationCard {...organization} icon={organization.icon ?? group.icon} />
                 </li>
               ))}
+              {group.callout ? (
+                <li>
+                  <GroupCalloutCard {...group.callout} />
+                </li>
+              ) : null}
             </ul>
           </section>
         ))}

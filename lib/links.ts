@@ -32,6 +32,13 @@ export type OrganizationGroup = {
   theme: string;
   icon: ComponentType<LucideProps>;
   organizations: Organization[];
+  /** Invitation shown after the organizations, e.g. to suggest a missing event. */
+  callout?: GroupCallout;
+};
+
+export type GroupCallout = {
+  title: string;
+  description: string;
 };
 
 /** Every outgoing link carries `utm_source` so partners can see traffic coming from the site. */
@@ -75,6 +82,10 @@ const rawGroups: OrganizationGroup[] = [
             platform: "web",
             href: "https://www.happycow.net/europe/france/toulouse/?filters=vegan-vegfriendly",
           },
+          {
+            platform: "instagram",
+            href: "https://www.instagram.com/happycow/",
+          },
         ],
       },
       {
@@ -105,6 +116,10 @@ const rawGroups: OrganizationGroup[] = [
     label: "Sortir",
     theme: "Marchés et événements",
     icon: Store,
+    callout: {
+      title: "Vous organisez un événement ?",
+      description: "Écrivez-nous pour qu'il apparaisse sur cette page.",
+    },
     organizations: [
       {
         name: "Mini Marché Vegan Toulouse",
@@ -188,6 +203,10 @@ const rawGroups: OrganizationGroup[] = [
             platform: "web",
             href: "https://www.l214.com/agir/agir-localement-pour-les-animaux/",
           },
+          {
+            platform: "instagram",
+            href: "https://www.instagram.com/association_l214/",
+          },
         ],
       },
       {
@@ -211,6 +230,7 @@ const rawGroups: OrganizationGroup[] = [
         name: "PAZ",
         description: "Paris Animaux Zoopolis, association antispéciste",
         links: [
+          { platform: "web", href: "https://zoopolis.fr/" },
           {
             platform: "instagram",
             href: "https://www.instagram.com/associationpaz/",
@@ -224,6 +244,10 @@ const rawGroups: OrganizationGroup[] = [
           {
             platform: "facebook-group",
             href: "https://www.facebook.com/groups/510019202696519/",
+          },
+          {
+            platform: "instagram",
+            href: "https://www.instagram.com/av__toulouse/",
           },
         ],
       },
@@ -263,13 +287,17 @@ const rawGroups: OrganizationGroup[] = [
         ],
       },
       {
-        name: "321 Vegan : L’appli mobile qui aide les vegans 🌱",
+        name: "321 Vegan : L’appli mobile qui aide les vegans",
         description:
-          "Scannez des codes-barres, vérifiez les additifs et les marques de cosmétiques",
+          "Scannez les codes-barres dans tous les supermarchés, à Toulouse comme ailleurs, et vérifiez les additifs et les marques de cosmétiques",
         links: [
           {
             platform: "web",
             href: "https://321vegan.fr/",
+          },
+          {
+            platform: "instagram",
+            href: "https://www.instagram.com/321vegan.app/",
           },
         ],
       },
