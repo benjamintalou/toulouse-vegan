@@ -27,9 +27,9 @@ export type VeganEvent = {
 };
 
 export const marcheDeNoel: VeganEvent = {
-  title: "Marché de Noël Éthique et Végane de Toulouse 2026",
+  title: "Marché de Noël Éthique et Vegan de Toulouse 2026",
   shortTitle: "Marché de Noël",
-  href: "/marche-de-noel-ethique-et-vegane-de-toulouse-2026",
+  href: "/marche-de-noel-ethique-et-vegan-de-toulouse-2026",
   startsAt: new Date("2026-12-12T10:00:00+01:00"),
   endsAt: new Date("2026-12-12T18:00:00+01:00"),
   place: "Place Saint-Pierre, Toulouse",

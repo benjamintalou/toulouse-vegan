@@ -9,7 +9,7 @@ export function GET() {
     headers: {
       "Content-Type": "text/calendar; charset=utf-8",
       // `inline` lets iOS offer « Ajouter au calendrier » straight away; desktop browsers download it.
-      "Content-Disposition": 'inline; filename="marche-de-noel-vegane-toulouse-2026.ics"',
+      "Content-Disposition": 'inline; filename="marche-de-noel-vegan-toulouse-2026.ics"',
       // The event page is the one to index, not this file.
       "X-Robots-Tag": "noindex",
       "Cache-Control": "public, max-age=3600",
