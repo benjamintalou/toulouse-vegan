@@ -10,8 +10,13 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/marche-de-noel-ethique-et-vegane-de-toulouse-2026/:path*",
-        destination: `${marcheDeNoel}/:path*`,
+        source: "/marche-de-noel-ethique-et-vegane-de-toulouse-2026",
+        destination: marcheDeNoel,
+        permanent: true,
+      },
+      {
+        source: "/marche-de-noel-ethique-et-vegane-de-toulouse-2026/:path+",
+        destination: `${marcheDeNoel}/:path+`,
         permanent: true,
       },
     ];
